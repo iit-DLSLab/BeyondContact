@@ -1,25 +1,207 @@
 <!doctype html>
 <html lang="en">
 <head>
-<meta charset="utf-8"><meta name="viewport" content="width=device-width, initial-scale=1">
-<title>BeyondContact</title>
-<meta name="description" content="Airflow-assisted manipulation: gripper-assisted box pushing and rectangular reorientation with Piper-L.">
-<link rel="stylesheet" href="styles.css"><script src="script.js" defer></script>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <meta name="theme-color" content="#ffffff">
+  <title>BeyondContact — Airflow-Based Non-Contact Manipulation</title>
+  <meta name="description" content="BeyondContact: an Isaac Lab airflow extension, a gripper-compatible blower design, and two reinforcement learning tasks. Real-world demonstrations and experimental results.">
+  <link rel="icon" href="favicon.svg" type="image/svg+xml">
+  <link rel="stylesheet" href="styles.css?v=20261101-video-layout">
+  <script src="script.js" defer></script>
 </head>
 <body>
-<header class="site-header" data-header>
-<a class="brand" href="#top"><span class="brand-mark" aria-hidden="true"></span><span>BeyondContact</span></a>
-<nav class="site-nav" aria-label="Primary navigation"><a href="#platform">Platform</a><a href="#physics">Physics</a><a href="#tasks">Tasks</a><a href="#install">Get started</a></nav>
-</header>
-<main id="top">
-<section class="hero" aria-labelledby="hero-title"><div class="hero-shade" aria-hidden="true"></div><div class="hero-content"><p class="eyebrow">Anonymous research release</p><h1 id="hero-title">BeyondContact</h1><p class="hero-copy">Airflow-assisted manipulation with Piper-L: learning to move and reorient objects through directed airflow and gripper assistance.</p></div></section>
-<section class="section section-tight" id="platform"><div class="section-heading"><p class="eyebrow">Research platform</p><h2>Airflow physics and two manipulation tasks</h2><p>A reusable Isaac Lab extension connects batched airflow forces to reinforcement learning environments.</p></div><div class="module-grid">
-<article class="module-card"><p class="module-index">01</p><h3>Blower extension</h3><p>Configurable jet physics, surface force and torque integration, target objects and debug visualisation.</p></article>
-<article class="module-card"><p class="module-index">02</p><h3>Gripper-assisted box pushing</h3><p>Piper-L controls the blower and uses gripper assistance to move a box into a target region.</p></article>
-<article class="module-card"><p class="module-index">03</p><h3>Rectangular reorientation</h3><p>Move a cuboid toward its target position and orientation with a learned manipulation policy.</p></article>
-</div></section>
-<section class="section flow-section" id="physics"><div class="flow-heading"><div><p class="eyebrow">Airflow physics</p><h2>From jet velocity to object motion</h2></div><p>The shared extension evaluates a Gaussian free-jet profile and integrates forces and torques across sampled object surfaces.</p></div><div class="compact-points"><span>Batched PyTorch model</span><span>Surface sampling</span><span>Force and torque integration</span><span>Configurable visualisation</span></div></section>
-<section class="section flow-section" id="tasks"><div class="section-heading"><p class="eyebrow">Reinforcement learning</p><h2>Two tasks, one Piper-L platform</h2><p>Manager-based environments with joint-position and airflow actions, task-specific rewards and PPO training through RSL-RL. Each task includes a Play configuration for evaluation.</p></div><div class="task-strip"><span>GripperAssistBoxPush</span><span>GripperAssistCuboidOrientation</span></div><p>The rectangular reorientation task retains the CuboidOrientation identifier in the code. Pretrained checkpoints are not included in this release.</p></section>
-<section class="section install-section" id="install"><div class="section-heading"><p class="eyebrow">Get started</p><h2>Install the airflow extension, then the RL framework</h2><p>Use an environment with Isaac Sim 5.1.0, compatible Isaac Lab, Python 3.11, PyTorch and RSL-RL.</p></div><div class="command-block"><span>python -m pip install -e external_blower/blower/source/blower</span><span>python -m pip install -e blower_arm_rl/source/blower_arm_rl</span><span>python blower_arm_rl/scripts/rsl_rl/train.py --task Isaac-Blower-Piper-GripperAssistBoxPush-v0 --headless</span><span>python blower_arm_rl/scripts/rsl_rl/train.py --task Isaac-Blower-Piper-GripperAssistCuboidOrientation-v0 --headless</span></div></section>
-</main><footer class="site-footer"><span>BeyondContact · Anonymous Authors</span><span>Isaac Sim + Isaac Lab</span></footer>
-</body></html>
+  <a class="skip-link" href="#main">Skip to content</a>
+  <header class="site-header" data-header>
+    <a class="brand" href="#top" aria-label="BeyondContact home">
+      <img class="brand-mark" src="favicon.svg" width="34" height="34" alt="">
+      <span>BeyondContact</span>
+    </a>
+    <nav class="site-nav" aria-label="Primary navigation">
+      <a href="#overview">Overview</a>
+      <a href="#demos">Demonstrations</a>
+      <a href="#method">Method</a>
+      <a href="#results">Results</a>
+      <a href="#reproduce">Code</a>
+    </nav>
+  </header>
+
+  <main id="main">
+    <section class="hero section" id="top" aria-labelledby="hero-title">
+      <h1 id="hero-title">BeyondContact:</h1>
+      <p class="paper-title">A Reinforcement Learning Framework for<br class="title-break"> Airflow-Based Non-Contact Manipulation</p>
+      <p class="authors">Anonymous authors</p>
+      <p class="hero-copy">We equip a robotic arm with a compact blower and train policies to enable non-contact manipulation.</p>
+    </section>
+
+    <section class="section" id="project-video" aria-labelledby="project-video-title">
+      <div class="section-heading">
+        <h2 id="project-video-title">Project video</h2>
+        <p>An introduction to the framework, airflow modeling, and real-world experiments.</p>
+      </div>
+      <figure class="research-figure project-video">
+        <video controls playsinline preload="none" poster="assets/project-overview-poster.webp" width="800" height="450" aria-label="BeyondContact project overview and experiments" data-demo-video>
+          <source src="assets/project-overview.mp4" type="video/mp4">
+          Your browser does not support embedded video. <a href="assets/project-overview.mp4">Download the project video</a>.
+        </video>
+        <figcaption><span>BeyondContact · Project overview · 3:44</span><a href="assets/project-overview.mp4" download>Download video</a></figcaption>
+      </figure>
+    </section>
+
+    <section class="section" id="overview" aria-labelledby="overview-title">
+      <div class="section-heading">
+        <h2 id="overview-title">Overview</h2>
+        <p>BeyondContact combines a compact blower design, an airflow extension for Isaac Lab, and two reinforcement learning tasks. The gripper handles contact manipulation; the blower adds a way to act on objects without direct contact.</p>
+      </div>
+      <figure class="research-figure overview-figure">
+        <a href="assets/framework.webp" target="_blank" rel="noopener" aria-label="Open the framework overview at full size"><img src="assets/framework.webp" width="2400" height="822" loading="lazy" alt="The framework connects blower hardware, airflow simulation, policy training, and real-world deployment."></a>
+        <figcaption><span>Hardware, airflow simulation, and policy training in the BeyondContact framework.</span><a href="assets/framework.webp" target="_blank" rel="noopener">Full-size figure</a></figcaption>
+      </figure>
+    </section>
+
+    <section class="metrics section" aria-label="Research highlights">
+      <div><p class="metric-value">1</p><p class="metric-label">Isaac Lab extension</p><p class="metric-detail">Reusable airflow simulation</p></div>
+      <div><p class="metric-value">1</p><p class="metric-label">Hardware design</p><p class="metric-detail">Gripper-compatible blower</p></div>
+      <div><p class="metric-value">2</p><p class="metric-label">Training tasks</p><p class="metric-detail">HPB and RR</p></div>
+      <div><p class="metric-value">80<span>%</span></p><p class="metric-label">Real-world HPB success</p><p class="metric-detail">16 of 20 trials</p></div>
+      <div><p class="metric-value">2.6<span>°</span></p><p class="metric-label">Real-world RR heading error</p><p class="metric-detail">Mean absolute error · four headings</p></div>
+    </section>
+
+    <section class="section" id="demos" aria-labelledby="demos-title">
+      <div class="section-heading demo-heading">
+        <div><h2 id="demos-title">Real-world demonstrations</h2><p>Policies trained in simulation, <b>zero-shot deployment</b> in aphysical arm without real-world fine-tuning.</p></div>
+      </div>
+      <div class="demo-grid">
+        <article class="demo-card">
+          <h3>Hybrid push–blow <span class="task-label">HPB</span></h3>
+          <p>The robot pushes the cube into a suitable position, then uses airflow to guide it into a target beyond direct reach.</p>
+          <picture class="demo-animation">
+            <source media="(prefers-reduced-motion: reduce)" srcset="assets/hpb-poster.webp" width="1280" height="640">
+            <img src="assets/airflow.gif" width="480" height="300" fetchpriority="high" alt="Real-world hybrid push–blow demonstration." data-animation data-gif="assets/airflow.gif" data-still="assets/hpb-poster.webp">
+          </picture>
+          <details class="recording-details">
+            <summary>Full experiment recording · 5:00</summary>
+            <video controls playsinline preload="none" poster="assets/hpb-poster.webp" width="1280" height="640" aria-label="Real-world hybrid push–blow experiments" data-demo-video>
+              <source src="assets/hybrid-push-blow.mp4" type="video/mp4">
+              Your browser does not support embedded video. <a href="assets/hybrid-push-blow.mp4">Download the HPB video</a>.
+            </video>
+          </details>
+          <div class="video-caption"><span>Real-world trial</span><a href="assets/hybrid-push-blow.mp4" download>Download video</a></div>
+        </article>
+        <article class="demo-card">
+          <h3>Rectangular reorientation <span class="task-label">RR</span></h3>
+          <p>The robot changes the blowing direction to rotate a cuboid toward a target heading. Gripper–object contact is disallowed.</p>
+          <picture class="demo-animation">
+            <source id="rr-still" media="(prefers-reduced-motion: reduce)" srcset="assets/rr-90-poster.webp" width="1280" height="720">
+            <img id="rr-gif" src="assets/airflow90.gif" width="480" height="300" fetchpriority="high" alt="Airflow-only cuboid reorientation toward 90 degrees." data-animation data-gif="assets/airflow90.gif" data-still="assets/rr-90-poster.webp">
+          </picture>
+          <div class="angle-controls" aria-label="Choose a reorientation demonstration">
+            <span>Target heading:</span>
+            <button type="button" data-angle="60" aria-controls="rr-gif rr-video" aria-pressed="false">60°</button>
+            <button type="button" data-angle="90" aria-controls="rr-gif rr-video" aria-pressed="true">90°</button>
+            <button type="button" data-angle="135" aria-controls="rr-gif rr-video" aria-pressed="false">135°</button>
+          </div>
+          <details class="recording-details">
+            <summary>Full trial recording</summary>
+            <video id="rr-video" controls playsinline preload="none" poster="assets/rr-90-poster.webp" width="1280" height="720" aria-label="Real-world rectangular reorientation toward 90 degrees" data-demo-video>
+              <source src="assets/rr-90.mp4" type="video/mp4">
+              Your browser does not support embedded video. <a href="assets/rr-90.mp4">Download the 90° video</a>.
+            </video>
+          </details>
+          <div class="video-caption"><span id="rr-caption" aria-live="polite">Target heading: 90° · Real-world trial</span><a id="rr-download" href="assets/rr-90.mp4" download>Download video</a></div>
+          <noscript><p>Other trials: <a href="assets/rr-60.mp4">60° video</a> · <a href="assets/rr-135.mp4">135° video</a>.</p></noscript>
+        </article>
+      </div>
+    </section>
+
+    <section class="section" id="method" aria-labelledby="method-title">
+      <div class="section-heading"><h2 id="method-title">Method</h2></div>
+      <div class="method-row hardware-row">
+        <div class="method-copy">
+          <h3>Gripper-compatible blower</h3>
+          <ul class="method-points">
+            <li>A 40 mm EDF is housed in an enclosure beneath the gripper. A magnetic connection supports interchangeable nozzles.</li>
+            <li>An ESP32 microcontroller regulates the blower through an ESC.</li>
+            <li><strong style="color: #8b0000;">The hardware design files will be released on the project website after the paper is published.</strong></li>
+            <li>The blower can achieve a maximum air velocity of <b>78m/s</b> and a static thrust of <b>5.9N</b>. We limit the blower output during identification and training to accommodate the anemometer's measurement range and the task configuration.</li>
+          </ul>
+        </div>
+        <figure class="research-figure hardware-figure">
+          <a href="assets/hardware-system.webp" target="_blank" rel="noopener" aria-label="Open the blower design and control architecture at full size"><img src="assets/hardware-system.webp" width="1800" height="1453" loading="lazy" alt="Blower assembly and control architecture, including the magnetic nozzle, ESP32, speed controller, and power supply."></a>
+          <figcaption><span>Blower assembly and control architecture.</span><a href="assets/hardware-system.webp" target="_blank" rel="noopener">Full size</a></figcaption>
+        </figure>
+      </div>
+      <div class="method-columns">
+        <div class="method-text">
+          <h3>Airflow modeling</h3>
+          <ul class="method-points">
+            <li>We experimentally identify the airflow profile of the blower and nozzle, then use surface integration to convert airflow into object forces and torques.</li>
+            <li>The Isaac Lab extension applies these loads in simulation for parallel policy training.</li>
+          </ul>
+        </div>
+        <div class="method-text">
+          <h3>Reinforcement learning</h3>
+          <ul class="method-points">
+            <li>Both tasks use PPO with an asymmetric actor–critic. The actor receives ten-step joint position and velocity histories, the object pose, the task goal, and previous actions. The critic receives additional simulation information.</li>
+            <li>The policy commands joint positions and airflow action. Training randomizes object mass, friction, robot gains, and airflow parameters.</li>
+            <li>The proposed training frameworks use 4,096 parallel environments and 5,000 training iterations. The extension can be reused in other environments, and in this release we register two Piper-L tasks.</li>
+          </ul>
+        </div>
+      </div>
+    </section>
+
+    <section class="section" id="results" aria-labelledby="results-title">
+      <div class="section-heading">
+        <h2 id="results-title">Experimental results</h2>
+        <p>Real-world evaluation uses a blower-equipped Piper-L on a 0.8 × 1.8 m table, with camera-based object detection and AprilTags for orientation estimation.</p>
+      </div>
+      <div class="table-wrap">
+        <table>
+          <caption>Results reported in the paper</caption>
+          <thead><tr><th scope="col">Task</th><th scope="col">Simulation</th><th scope="col">Real world</th><th scope="col">Training time</th></tr></thead>
+          <tbody>
+            <tr><th scope="row">Hybrid push–blow (HPB)</th><td>88% success</td><td><strong>80% success</strong> · 16 / 20 trials</td><td>5.7 h</td></tr>
+            <tr><th scope="row">Rectangular reorientation (RR)</th><td>92% success</td><td><strong>2.6° heading MAE</strong> · 4 trials with different headings</td><td>6.6 h</td></tr>
+          </tbody>
+        </table>
+      </div>
+      <p class="small-note">Training times were measured on an NVIDIA RTX 5090 with an Intel U7 265K.</p>
+      <div class="trace-grid">
+        <figure class="research-figure"><a href="assets/hpb-results.webp" target="_blank" rel="noopener"><img src="assets/hpb-results.webp" width="2400" height="1029" loading="lazy" alt="HPB deployment sequence and measured joint angles and airflow command."></a><figcaption>HPB: deployment sequence and measurements.</figcaption></figure>
+        <figure class="research-figure"><a href="assets/rr-results.webp?v=281c18ca1cdd" target="_blank" rel="noopener"><img src="assets/rr-results.webp?v=281c18ca1cdd" width="1600" height="1169" loading="lazy" alt="RR deployment sequences, measured joint and airflow traces, and heading trajectories."></a><figcaption>RR: deployment sequence and heading trajectories.</figcaption></figure>
+      </div>
+    </section>
+
+    <section class="section" id="reproduce" aria-labelledby="reproduce-title">
+      <div class="section-heading"><h2 id="reproduce-title">Code and setup (See README)</h2><p>The release contains the airflow extension, two Piper-L task environments, and PPO training and checkpoint playback scripts.</p></div>
+      <dl class="release-list">
+        <dt><code>external_blower/blower</code></dt><dd>Airflow model, surface sampling, batched force and torque computation, object assets, and visualization.</dd>
+        <dt><code>blower_arm_rl</code></dt><dd>Hybrid push–blow and rectangular reorientation tasks.</dd>
+      </dl>
+      <h3>Installation</h3>
+      <p>Use Isaac Sim 5.1.0, a compatible Isaac Lab installation, Python 3.11, PyTorch, and RSL-RL. Run these commands from the repository root. Editable installs keep robot and object assets accessible from the source checkout.</p>
+      <div class="code-panel">
+        <div class="code-toolbar"><span>Installation</span><button type="button" class="copy-button" data-copy="install-code">Copy commands</button></div>
+        <pre><code id="install-code">python -m pip install -e external_blower/blower/source/blower
+python -m pip install -e blower_arm_rl/source/blower_arm_rl
+python blower_arm_rl/scripts/list_envs.py</code></pre>
+      </div>
+      <p class="copy-status" id="copy-status" role="status" aria-live="polite"></p>
+      <div class="technical-section">
+        <h3>Train and evaluate the two tasks</h3>
+        <p><strong>Hybrid push–blow</strong></p>
+        <pre><code>python blower_arm_rl/scripts/rsl_rl/train.py --task Isaac-Blower-Piper-GripperAssistBoxPush-v0 --headless
+python blower_arm_rl/scripts/rsl_rl/play.py --task Isaac-Blower-Piper-GripperAssistBoxPush-Play-v0 --num_envs 1 --checkpoint /path/to/model.pt</code></pre>
+        <p><strong>Rectangular reorientation</strong></p>
+        <pre><code>python blower_arm_rl/scripts/rsl_rl/train.py --task Isaac-Blower-Piper-GripperAssistCuboidOrientation-v0 --headless
+python blower_arm_rl/scripts/rsl_rl/play.py --task Isaac-Blower-Piper-GripperAssistCuboidOrientation-Play-v0 --num_envs 1 --checkpoint /path/to/model.pt</code></pre>
+      </div>
+    </section>
+  </main>
+  <footer class="site-footer">
+    <a class="brand" href="#top"><img class="brand-mark" src="favicon.svg" width="28" height="28" alt=""><span>BeyondContact</span></a>
+    <p>Anonymous research release</p>
+    <a href="#top">Back to top</a>
+  </footer>
+</body>
+</html>
