@@ -251,7 +251,7 @@ summary:hover { text-decoration: underline; }
 .hardware-figure > a { padding: 16px; }
 .method-columns { margin-top: 32px; padding-top: 32px; border-top: 1px solid var(--line); }
 .method-text + .method-text { margin-top: 32px; padding-top: 32px; border-top: 1px solid var(--line); }
-.platform-figure { max-width: 450px; margin: 18px auto; }
+.platform-figure { margin: 28px auto 0; }
 .technical-section { border-top: 1px solid var(--line); margin-top: 24px; padding-top: 18px; }
 .technical-section > p { font-size: 1rem; }
 .table-wrap { overflow-x: auto; margin: 0 0 20px; background: var(--surface); border: 1px solid var(--line); border-radius: 9px; }
