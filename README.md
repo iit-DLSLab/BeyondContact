@@ -12,7 +12,7 @@ E-mail: `name.surname@iit.it`
 
 <sup>*</sup> Peiyu Yang and Mohamad S. Moudallal contributed equally.
 
-Reinforcement learning · Grippers and other end-effectors, Non-contact manipulation
+Reinforcement learning , Grippers and other end-effectors, Non-contact manipulation
 
 [Overview](#overview) · [Demonstrations](#demonstrations) · [Results](#experimental-results) · [Installation](#installation) · [Training](#train) · [Project website](#project-website)
 
