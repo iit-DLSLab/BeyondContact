@@ -138,7 +138,12 @@ main > .section + .section:not(.metrics) { border-top: 1px solid var(--line); }
   margin-bottom: 8px;
 }
 .paper-title { font-size: clamp(1.15rem, 2.5vw, 1.5rem); line-height: 1.45; margin-bottom: 14px; }
-.authors { color: var(--muted); font-size: 1rem; margin-bottom: 22px; }
+.authors { color: var(--ink); font-size: 1rem; margin-bottom: 12px; }
+.authors span { display: inline-block; }
+.affiliation, .author-email, .author-note { color: var(--muted); font-size: .9rem; }
+.affiliation { margin-bottom: 8px; }
+.author-email { margin-bottom: 8px; }
+.author-note { margin-bottom: 22px; }
 .hero-copy { max-width: 730px; margin: 0 auto 18px; font-size: 1rem; }
 .hero-actions { display: flex; justify-content: center; flex-wrap: wrap; gap: 24px; font-size: 1rem; }
 .metrics {

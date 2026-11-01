@@ -4,7 +4,15 @@
 
 ### A Reinforcement Learning Framework for Airflow-Based Non-Contact Manipulation
 
-Anonymous research release · Reinforcement learning · Grippers and other end-effectors, Non-contact manipulation
+Peiyu Yang<sup>*</sup>, Mohamad S. Moudallal<sup>*</sup>, Antonio Langella, Giulio Turrisi, Victor Barasuol, and Claudio Semini
+
+All the authors are with the Dynamic Legged Systems lab, Istituto Italiano di Tecnologia (IIT), 16163, Genova, Italy.
+
+E-mail: `name.surname@iit.it`
+
+<sup>*</sup> Peiyu Yang and Mohamad S. Moudallal contributed equally.
+
+Reinforcement learning · Grippers and other end-effectors, Non-contact manipulation
 
 [Overview](#overview) · [Demonstrations](#demonstrations) · [Results](#experimental-results) · [Installation](#installation) · [Training](#train) · [Project website](#project-website)
 
