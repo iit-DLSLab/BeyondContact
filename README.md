@@ -4,7 +4,7 @@
 
 ### A Reinforcement Learning Framework for Airflow-Based Non-Contact Manipulation
 
-Peiyu Yang<sup>*</sup>, Mohamad S. Moudallal<sup>*</sup>, Antonio Langella, Giulio Turrisi, Victor Barasuol, and Claudio Semini
+Peiyu Yang<sup>\*</sup>, Mohamad S. Moudallal<sup>\*</sup>, Antonio Langella, Giulio Turrisi, Victor Barasuol, and Claudio Semini
 
 All the authors are with the Dynamic Legged Systems lab, Istituto Italiano di Tecnologia (IIT), 16163, Genova, Italy.
 
