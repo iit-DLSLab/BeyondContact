@@ -79,8 +79,6 @@ Both tasks use PPO with an asymmetric actor–critic. The details of the trainin
 - **Robustness:** domain randomization over object mass, friction, robot gains, and airflow parameters.
 - **Reported training setup:** 4,096 environments, 5,000 iterations, NVIDIA RTX 5090 and Intel U7 265K.
 
-Check the [released PPO configuration](blower_arm_rl/source/blower_arm_rl/blower_arm_rl/tasks/manager_based/piper_blower_rl/agents/rsl_rl_ppo_cfg.py) and task configurations.
-
 ## Experimental results
 
 We validated both tasks on physical Piper-L robotics arm.
