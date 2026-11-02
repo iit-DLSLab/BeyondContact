@@ -4,7 +4,7 @@ These optimized assets are shared by the project website and root README. The we
 
 | Asset | Supplied source |
 | --- | --- |
-| `framework.webp` | `figs/overview.png` |
+| `framework.webp` | `docs/assets/framework.jpeg` |
 | `airflow-pipeline.webp` | `figs/extension.png` |
 | `platforms.webp` | `docs/assets/platforms.png` |
 | `hardware-system.webp` | `figs/new_system.png` |
@@ -24,6 +24,8 @@ These optimized assets are shared by the project website and root README. The we
 Figures retain their original aspect ratios, use WebP at quality 90, and are limited to 1,400–2,400 pixels in width. Source transparency is composited onto an opaque white background before export, so figures remain white-backed in both the website and README, including dark-mode viewers. Opaque artwork and photographs retain their original colors. Embedded figures link to these larger versions. Image metadata is omitted.
 
 The updated platform figure and project overview poster use the PNG originals retained in this directory, at 1600 × 702 and 1600 × 900 respectively. Both are exported as quality-90 WebP with transparency composited onto white. The platform figure appears in the Method section; the poster is the project video's cover. Their page URLs include content hashes to refresh browser caches. The regeneration scripts below still use the older `figs/` sources for these two assets; regenerate these replacements from their local PNG files instead.
+
+The current `framework.webp` is exported from `framework.jpeg` in this directory at 1600 × 548, using WebP quality 90 with image metadata omitted. The webpage and root README use a content hash in the image URL to refresh caches. The figure regeneration script still uses the older `figs/overview.png`; use the current JPEG when regenerating this replacement.
 
 To regenerate the figures from the local originals, run from the repository root with Python and Pillow installed:
 

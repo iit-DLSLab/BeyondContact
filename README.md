@@ -23,7 +23,7 @@ Reinforcement learning , Grippers and other end-effectors, Non-contact manipulat
 
  Contact-based robotic manipulation is constrained by end-effector reachability and the mechanical properties of objects. Airflow can exert forces without physical contact, enabling manipulation of objects beyond the workspace or when direct contact is undesirable. Here we propose BeyondContact, a reinforcement learning framework for airflow-based non-contact manipulation.
 
-![BeyondContact framework: custom blower hardware, airflow modeling, RL policy training, and physical robot deployment](docs/assets/framework.webp)
+![BeyondContact framework: custom blower hardware, airflow modeling, RL policy training, and physical robot deployment](docs/assets/framework.webp?v=ae0e70badf39)
 
 The framework includes:
 
